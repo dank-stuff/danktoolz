@@ -1,0 +1,10 @@
+services:
+  danktoolz-web:
+    container_name: "danktoolz-web"
+    build:
+      context: .
+    restart: "always"
+    ports:
+      - "26730:8080"
+    stdin_open: true
+    env_file: .env.docker

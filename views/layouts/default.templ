@@ -1,0 +1,81 @@
+package layouts
+
+import (
+	"codeberg.org/dankstuff/danktoolz/views/partials"
+	"codeberg.org/dankstuff/danktoolz/views/types"
+	"strings"
+)
+
+templ Default(props types.PageProps, content templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{ props.Title } - DankToolz</title>
+			<link rel="stylesheet" href="/static/css/amber-console.min.css"/>
+			<link rel="stylesheet" href="/static/css/style.css"/>
+			<link
+				rel="icon"
+				type="image/png"
+				href="/static/favicon-96x96.png"
+				sizes="96x96"
+			/>
+			<link rel="icon" type="image/svg+xml" href="/static/favicon.svg"/>
+			<link rel="shortcut icon" href="/static/favicon.ico"/>
+			<link
+				rel="apple-touch-icon"
+				sizes="180x180"
+				href="/static/apple-touch-icon.png"
+			/>
+			<meta name="apple-mobile-web-app-title" content="DankToolz"/>
+			<link rel="manifest" href="/static/site.webmanifest"/>
+			<meta name="og:title" content={ props.Title + " - DankToolz" }/>
+			if props.Description != "" {
+				<meta name="description" content={ props.Description }/>
+				<meta name="og:description" content={ props.Description }/>
+			} else {
+				<meta name="description" content="A bunch of tools in/for the web."/>
+				<meta name="og:description" content="A bunch of tools in/for the web."/>
+			}
+			<meta
+				name="keywords"
+				content={ "dank,dankstuff,dank stuff,tools,dank toolz,toolz" + strings.Join(props.AdditionalKeywords, ",") }
+			/>
+			if props.Url  != "" {
+				<meta property="og:url" content={ props.Url }/>
+			} else {
+				<meta property="og:url" content="https://danktoolz.com"/>
+			}
+			if props.ImageUrl  != "" {
+				<meta property="og:image" content={ props.ImageUrl }/>
+			} else {
+				<meta
+					property="og:image"
+					content="https://danktoolz.com/static/favicon.png"
+				/>
+			}
+			<script src="/static/js/htmx/htmx.min.js"></script>
+			<script defer src="/static/js/htmx/json-enc.js"></script>
+			<script defer src="/static/js/htmx/loading-states.js"></script>
+			<script defer src="/static/js/htmx/hyperscript.min.js"></script>
+		</head>
+		<body
+			hx-ext="loading-states"
+			class="ac-screen__body"
+		>
+			@partials.Header()
+			<hr class="ac-hr"/>
+			<main>
+				<section class="dank-container">
+					@content
+				</section>
+			</main>
+			<hr class="ac-hr"/>
+			@partials.Footer()
+			<script>
+				console.log("helloooo 👋");
+			</script>
+		</body>
+	</html>
+}

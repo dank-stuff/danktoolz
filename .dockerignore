@@ -1,0 +1,15 @@
+.DS_Store
+node_modules
+.env
+.env.*
+!.env.example
+danktoolz
+_*/
+tmp/
+Session.vim
+.db
+static/assets/fonts/amber/
+static/assets/js/htmx/
+static/assets/css/amber-console.min.css
+*_templ.go
+*_templ.txt

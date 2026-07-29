@@ -5,7 +5,7 @@ full_bin = "make local-server"
 cmd = "make build-server"
 delay = 0
 exclude_dir = [
-  "web/static",
+  "static",
   "tmp",
   "vendor",
   ".db",

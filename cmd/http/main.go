@@ -5,9 +5,11 @@ import (
 	"net/http"
 	"regexp"
 
+	"codeberg.org/dankstuff/danktoolz/actions"
 	"codeberg.org/dankstuff/danktoolz/config"
 	"codeberg.org/dankstuff/danktoolz/handlers/middlewares/contenttype"
 	"codeberg.org/dankstuff/danktoolz/handlers/middlewares/ismobile"
+	"codeberg.org/dankstuff/danktoolz/handlers/middlewares/pathname"
 	"codeberg.org/dankstuff/danktoolz/handlers/pages"
 	"codeberg.org/dankstuff/danktoolz/handlers/static"
 	"github.com/tdewolff/minify/v2"
@@ -21,7 +23,7 @@ import (
 
 var (
 	minifyer *minify.M
-	// usecases *actions.Actions
+	usecases *actions.Actions
 )
 
 func init() {
@@ -33,7 +35,7 @@ func init() {
 	minifyer.AddFuncRegexp(regexp.MustCompile("[/+]json$"), mjson.Minify)
 	minifyer.AddFuncRegexp(regexp.MustCompile("[/+]xml$"), xml.Minify)
 
-	// usecases = actions.New(repo, mailUtil, jwtUtil, sm)
+	usecases = actions.New()
 }
 
 func main() {
@@ -41,10 +43,14 @@ func main() {
 	/// PAGES
 	///
 
-	pages := pages.New()
+	pages := pages.New(usecases)
 
 	pagesHandler := http.NewServeMux()
 	pagesHandler.HandleFunc("/", pages.HandleIndex)
+	pagesHandler.HandleFunc("/my-ip", pages.HandleMyIP)
+	pagesHandler.HandleFunc("/passwords", pages.HandlePasswords)
+	pagesHandler.HandleFunc("/clip", pages.HandleClip)
+	pagesHandler.HandleFunc("/url-shortner", pages.HandleUrlShortner)
 
 	///
 	/// WEB APIS
@@ -66,7 +72,7 @@ func main() {
 
 	applicationHandler := http.NewServeMux()
 
-	applicationHandler.Handle("/", ismobile.Handler(contenttype.Html(pagesHandler)))
+	applicationHandler.Handle("/", pathname.Handler(ismobile.Handler(contenttype.Html(pagesHandler))))
 	// applicationHandler.Handle("/api/", contenttype.Json(http.StripPrefix("/api", v1ApiHandler)))
 	// applicationHandler.Handle("/api/web/", ismobile.Handler(http.StripPrefix("/api/web", webApisHandler)))
 

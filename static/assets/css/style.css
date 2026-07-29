@@ -8,60 +8,20 @@ div {
 body {
   margin: 0;
   padding: 0;
-  /* background-color: #4a5942; */
-  /* color: #dedfd6; */
   min-height: 100dvh;
+}
+
+main {
+  min-height: 70dvh;
 }
 
 /* components specific styles */
 
-main {
-  min-height: 65dvh;
-}
-
-.title-container {
-  width: 100%;
-  text-align: center;
-}
-
-.title-sub {
-  font-size: 1.5rem;
-  margin: 0;
-  font-style: italic;
-  height: 55px;
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 700;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  text-align: center;
-}
-
-@media screen and (min-width: 768px) {
-  .title {
-    font-size: 4rem;
-  }
-}
-
-@media screen and (min-width: 1300px) {
-  .title {
-    font-size: 8rem;
-    height: 150px;
-  }
-}
-
-@media screen and (min-width: 1300px) {
-  .lyrics-container {
-    font-size: 1.4rem;
-  }
-}
-
 .dank-container {
   width: 95%;
   margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 @media screen and (min-width: 1300px) {
@@ -109,68 +69,6 @@ main {
   }
 }
 
-.dank-form-item {
-  width: 100%;
-  height: 20px;
-}
-
-.artist-album-container {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  flex-direction: column;
-  gap: 15px;
-}
-
-@media screen and (min-width: 768px) {
-  .artist-album-container {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-direction: row;
-  }
-}
-
-.dank-form-button {
-  height: 30px;
-}
-
-.dank-song-name {
-  padding: 10px;
-  width: 100%;
-}
-
-.dank-album-name {
-  padding: 10px;
-  width: 100%;
-}
-
-.dank-artist-name {
-  padding: 10px;
-  width: 100%;
-}
-
-.dank-lyrics {
-  padding: 10px;
-  width: 100%;
-  resize: none;
-}
-
-.dank-email {
-  padding: 10px;
-  width: 100%;
-}
-.dank-lyrics-content-tab {
-  width: 100%;
-  text-align: center;
-}
-
-#dank-lyrics-content {
-  width: 100%;
-  text-align: left;
-  user-select: text !important;
-}
-
 #loading-bar {
   width: 100%;
   overflow: hidden;
@@ -193,28 +91,9 @@ main {
   display: none;
 }
 
-.gh {
-  width: 25px;
-  height: 25px;
-}
-
-header p {
-  font-size: 22px;
-  line-height: 25px;
-  margin-top: 10px;
-}
-main > div {
-  margin-bottom: 15px;
-}
-main > div h2 {
-  -webkit-user-select: none;
-  user-select: none;
-  margin-bottom: 5px;
-}
-
 .footer {
   margin: 0;
-  background-color: #3e4637;
+  background-color: var(--amber-70);
   display: flex;
   justify-content: center;
   width: 100%;

@@ -8,7 +8,10 @@ import (
 
 templ Default(props types.PageProps, content templ.Component) {
 	<!DOCTYPE html>
-	<html lang="en">
+	<html
+		lang="en"
+		data-ac-gas="neon"
+	>
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -62,16 +65,14 @@ templ Default(props types.PageProps, content templ.Component) {
 		</head>
 		<body
 			hx-ext="loading-states"
-			class="ac-screen__body"
+			class="ac-screen ac-bloom ac-crt ac-afterglow"
 		>
 			@partials.Header()
-			<hr class="ac-hr"/>
 			<main>
-				<section class="dank-container">
+				<section class="dank-container ">
 					@content
 				</section>
 			</main>
-			<hr class="ac-hr"/>
 			@partials.Footer()
 			<script>
 				console.log("helloooo 👋");

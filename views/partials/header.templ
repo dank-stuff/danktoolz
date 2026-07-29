@@ -1,10 +1,37 @@
 package partials
 
+import "context"
+import "codeberg.org/dankstuff/danktoolz/handlers/middlewares/pathname"
+import "strings"
+
+func activePage(ctx context.Context, matchPath string) string {
+	pathname, ok := ctx.Value(pathname.PathNameKey).(string)
+	if !ok {
+		return ""
+	}
+	if pathname == "/" && pathname == matchPath {
+		return "aria-current=page"
+	}
+	if strings.HasPrefix(pathname, matchPath) && matchPath != "/" {
+		return "aria-current=page"
+	}
+	return ""
+}
+
 templ Header() {
 	<header>
-		<section class="title-container">
-			<h1 class="title">DankToolz</h1>
-			<p class="title-sub">A bunch of tools in/for the web.</p>
-		</section>
+		<nav class="ac-nav ac-nav--sticky">
+			<span class="ac-nav__mark">DankToolz</span>
+			<div class="ac-nav__links">
+				<a class="ac-nav__link" href="/" { activePage(ctx, "/") }>Index</a>
+				<a class="ac-nav__link" href="/my-ip" { activePage(ctx, "/my-ip") }>IP</a>
+				<a class="ac-nav__link" href="/passwords" { activePage(ctx, "/passwords") }>Passwords</a>
+				<a class="ac-nav__link" href="/clip" { activePage(ctx, "/clip") }>Clip</a>
+				<a class="ac-nav__link" href="/url-shortner" { activePage(ctx, "/url-shortner") }>URL Shortner</a>
+			</div>
+			<span class="ac-nav__meta">
+				<a class="doc-byline" href="https://dankstuff.net" target="_blank" rel="noopener">A DankStuff product</a>
+			</span>
+		</nav>
 	</header>
 }

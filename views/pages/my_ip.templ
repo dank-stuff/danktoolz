@@ -1,0 +1,8 @@
+package pages
+
+import "codeberg.org/dankstuff/danktoolz/actions"
+import "fmt"
+
+templ MyIP(ipInfo actions.IpInfo) {
+	{ fmt.Sprintf("%+v", ipInfo) }
+}

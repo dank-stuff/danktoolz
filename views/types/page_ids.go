@@ -3,6 +3,10 @@ package types
 type PageId string
 
 const (
-	AboutPage PageId = "about"
-	IndexPage PageId = "index"
+	IndexPage     PageId = "index"
+	MyIpPage      PageId = "my-ip"
+	PasswordsPage PageId = "passwords"
+	ClipPage      PageId = "clip"
+	UrlsPage      PageId = "urls"
+	PrivacyPage   PageId = "privacy"
 )

@@ -50,7 +50,7 @@ func (p *pagesHandler) HandleMyIP(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 	err := layouts.Default(types.PageProps{
-		PageId: types.IndexPage,
+		PageId: types.MyIpPage,
 		Title:  "My IP",
 	}, pages.MyIP(ipInfo)).Render(r.Context(), w)
 	if err != nil {
@@ -68,7 +68,7 @@ func (p *pagesHandler) HandlePasswords(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 	err := layouts.Default(types.PageProps{
-		PageId: types.IndexPage,
+		PageId: types.PasswordsPage,
 		Title:  "My IP",
 	}, pages.Passwords()).Render(r.Context(), w)
 	if err != nil {
@@ -86,7 +86,7 @@ func (p *pagesHandler) HandleClip(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 	err := layouts.Default(types.PageProps{
-		PageId: types.IndexPage,
+		PageId: types.ClipPage,
 		Title:  "Clip",
 	}, pages.Clip()).Render(r.Context(), w)
 	if err != nil {
@@ -104,7 +104,7 @@ func (p *pagesHandler) HandleUrlShortner(w http.ResponseWriter, r *http.Request)
 
 	w.Header().Set("Content-Type", "text/html")
 	err := layouts.Default(types.PageProps{
-		PageId: types.IndexPage,
+		PageId: types.UrlsPage,
 		Title:  "URL Sohrtner",
 	}, pages.UrlShortner()).Render(r.Context(), w)
 	if err != nil {
@@ -114,8 +114,7 @@ func (p *pagesHandler) HandleUrlShortner(w http.ResponseWriter, r *http.Request)
 	}
 }
 
-/*
-func (p *pages) HandleAbout(w http.ResponseWriter, r *http.Request) {
+func (p *pagesHandler) HandlePrivacy(w http.ResponseWriter, r *http.Request) {
 	if strings.Contains(r.URL.Path, ".go") || strings.Contains(r.URL.Path, "admin") {
 		http.Redirect(w, r, "https://www.youtube.com/watch?v=dQw4w9WgXcQ", http.StatusTemporaryRedirect)
 		return
@@ -123,13 +122,12 @@ func (p *pages) HandleAbout(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 	err := layouts.Default(types.PageProps{
-		PageId: types.AboutPage,
-		Title:  "About",
-	}, partials.About()).Render(r.Context(), w)
+		PageId: types.PrivacyPage,
+		Title:  "Privacy",
+	}, pages.Privacy()).Render(r.Context(), w)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		log.Println(err)
 		return
 	}
 }
-*/

@@ -6,12 +6,27 @@
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://danktoolz.com/about</loc>
+    <loc>https://danktoolz.com/privacy</loc>
     <lastmod>2026-07-30T12:28:54+00:00</lastmod>
-    <priority>0.80</priority>
+    <priority>0.64</priority>
   </url>
   <url>
-    <loc>https://danktoolz.com/privacy</loc>
+    <loc>https://danktoolz.com/ip</loc>
+    <lastmod>2026-07-30T12:28:54+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://danktoolz.com/urls</loc>
+    <lastmod>2026-07-30T12:28:54+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://danktoolz.com/passwords</loc>
+    <lastmod>2026-07-30T12:28:54+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://danktoolz.com/clip</loc>
     <lastmod>2026-07-30T12:28:54+00:00</lastmod>
     <priority>0.64</priority>
   </url>

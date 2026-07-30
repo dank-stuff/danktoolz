@@ -49,7 +49,7 @@ func main() {
 	pagesHandler.HandleFunc("/", pages.HandleIndex)
 	pagesHandler.HandleFunc("/my-ip", pages.HandleMyIP)
 	pagesHandler.HandleFunc("/passwords", pages.HandlePasswords)
-	pagesHandler.HandleFunc("/clip", pages.HandleClip)
+	pagesHandler.HandleFunc("/paste", pages.HandlePastebin)
 	pagesHandler.HandleFunc("/urls", pages.HandleUrlShortner)
 	pagesHandler.HandleFunc("/privacy", pages.HandlePrivacy)
 

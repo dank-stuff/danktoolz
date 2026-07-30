@@ -78,7 +78,7 @@ func (p *pagesHandler) HandlePasswords(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (p *pagesHandler) HandleClip(w http.ResponseWriter, r *http.Request) {
+func (p *pagesHandler) HandlePastebin(w http.ResponseWriter, r *http.Request) {
 	if strings.Contains(r.URL.Path, ".go") || strings.Contains(r.URL.Path, "admin") {
 		http.Redirect(w, r, "https://www.youtube.com/watch?v=dQw4w9WgXcQ", http.StatusTemporaryRedirect)
 		return
@@ -86,9 +86,9 @@ func (p *pagesHandler) HandleClip(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 	err := layouts.Default(types.PageProps{
-		PageId: types.ClipPage,
-		Title:  "Clip",
-	}, pages.Clip()).Render(r.Context(), w)
+		PageId: types.PastebinPage,
+		Title:  "Pastebin",
+	}, pages.Pastebin()).Render(r.Context(), w)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		log.Println(err)

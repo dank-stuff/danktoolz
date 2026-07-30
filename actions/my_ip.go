@@ -26,7 +26,7 @@ type IpInfo struct {
 	Bitness         string `json:"ua_bitness"`
 	FullVersionList string `json:"ua_full_versions"`
 	FormFactors     string `json:"ua_form_factors"`
-	DeviceMemoryGB  int    `json:"device_memory_gb"`
+	DeviceMemoryGB  string `json:"device_memory_gb"`
 	ViewportWidth   int    `json:"viewport_width_px"`
 
 	AcceptLanguage string `json:"accept_language"`
@@ -61,8 +61,7 @@ func ExtractClientMetadata(r *http.Request) IpInfo {
 	}
 
 	if xff := r.Header.Get("X-Forwarded-For"); xff != "" {
-		parts := strings.Split(xff, ",")
-		for _, part := range parts {
+		for part := range strings.SplitSeq(xff, ",") {
 			meta.ForwardedFor = append(meta.ForwardedFor, strings.TrimSpace(part))
 		}
 	}
@@ -83,7 +82,7 @@ func ExtractClientMetadata(r *http.Request) IpInfo {
 	meta.FullVersionList = r.Header.Get("Sec-CH-UA-Full-Version-List")
 	meta.FormFactors = r.Header.Get("Sec-CH-UA-Form-Factors")
 
-	meta.DeviceMemoryGB, _ = strconv.Atoi(r.Header.Get("Sec-CH-Device-Memory"))
+	meta.DeviceMemoryGB = r.Header.Get("Sec-CH-Device-Memory")
 	meta.ViewportWidth, _ = strconv.Atoi(r.Header.Get("Sec-CH-Viewport-Width"))
 	meta.TimezoneOffset, _ = strconv.Atoi(r.Header.Get("Sec-CH-UA-Timezone-Offset"))
 
@@ -112,7 +111,6 @@ func ExtractClientMetadata(r *http.Request) IpInfo {
 }
 
 func determineBestClientIP(r *http.Request, meta IpInfo) string {
-
 	if meta.TrueClientIP != "" {
 		return meta.TrueClientIP
 	}

@@ -3,6 +3,47 @@ package pages
 import "codeberg.org/dankstuff/danktoolz/actions"
 import "fmt"
 
+templ rowIfNotEmpty(name, value string) {
+	if value != "" {
+		<tr>
+			<td>{ name }</td>
+			<td>{ value }</td>
+		</tr>
+	}
+}
+
+templ rowIfNotEmptyFloat(name string, value float64) {
+	if value > 0 {
+		<tr>
+			<td>{ name }</td>
+			<td>{ fmt.Sprint(value) }</td>
+		</tr>
+	}
+}
+
 templ MyIP(ipInfo actions.IpInfo) {
-	{ fmt.Sprintf("%+v", ipInfo) }
+	<span class="ac-panel__title">IP Information</span>
+	<h1>Full IP Information</h1>
+	<div class="ac-table-scroll">
+		<table class="ac-table">
+			<tbody>
+				@rowIfNotEmpty("IPv4", ipInfo.ClientIP)
+				@rowIfNotEmpty("Platform", ipInfo.Platform)
+				@rowIfNotEmpty("Architecture", ipInfo.Architecture)
+				@rowIfNotEmpty("Bitness", ipInfo.Bitness)
+				@rowIfNotEmpty("Device memory", ipInfo.DeviceMemoryGB)
+				@rowIfNotEmpty("Client", ipInfo.BrandList)
+				@rowIfNotEmpty("User agent", ipInfo.UA)
+				@rowIfNotEmpty("Do Not Track", fmt.Sprint(ipInfo.DoNotTrack))
+				@rowIfNotEmpty("Is mobile", fmt.Sprint(ipInfo.IsMobile))
+				@rowIfNotEmpty("Accept language", ipInfo.AcceptLanguage)
+				@rowIfNotEmpty("Continent code", ipInfo.ContinentCode)
+				@rowIfNotEmpty("Region", ipInfo.Region)
+				@rowIfNotEmpty("City", ipInfo.City)
+				@rowIfNotEmpty("Postal code", ipInfo.PostalCode)
+				@rowIfNotEmptyFloat("Latitude", ipInfo.Latitude)
+				@rowIfNotEmptyFloat("Longitude", ipInfo.Longitude)
+			</tbody>
+		</table>
+	</div>
 }

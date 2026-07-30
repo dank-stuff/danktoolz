@@ -47,7 +47,7 @@ func main() {
 
 	pagesHandler := http.NewServeMux()
 	pagesHandler.HandleFunc("/", pages.HandleIndex)
-	pagesHandler.HandleFunc("/my-ip", pages.HandleMyIP)
+	pagesHandler.HandleFunc("/ip", pages.HandleMyIP)
 	pagesHandler.HandleFunc("/passwords", pages.HandlePasswords)
 	pagesHandler.HandleFunc("/clip", pages.HandleClip)
 	pagesHandler.HandleFunc("/url-shortner", pages.HandleUrlShortner)

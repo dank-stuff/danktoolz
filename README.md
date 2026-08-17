@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://danktoolz.com" target="_blank"><img src="https://danktoolz.com/static/favicon.png" width="150" /></a>
+  <a href="https://danktoolz.com" target="_blank"><img src="https://danktoolz.com/static/web-app-manifest-192x192.png" width="150" /></a>
 
 <h1>DankToolz</h1>
   <p>

@@ -8,43 +8,43 @@ import (
 )
 
 type IpInfo struct {
-	RawRemoteAddr string   `json:"raw_remote_addr"`
-	ClientIP      string   `json:"client_ip"`
-	ForwardedFor  []string `json:"forwarded_for"`
-	RealIP        string   `json:"real_ip"`
-	TrueClientIP  string   `json:"true_client_ip"`
-	Authorization string   `json:"authorization"`
-	Referer       string   `json:"referer"`
-	Origin        string   `json:"origin"`
+	RawRemoteAddr string   `json:"raw_remote_addr,omitempty"`
+	ClientIP      string   `json:"client_ip,omitempty"`
+	ForwardedFor  []string `json:"forwarded_for,omitempty"`
+	RealIP        string   `json:"real_ip,omitempty"`
+	TrueClientIP  string   `json:"true_client_ip,omitempty"`
+	Authorization string   `json:"authorization,omitempty"`
+	Referer       string   `json:"referer,omitempty"`
+	Origin        string   `json:"origin,omitempty"`
 
-	UA              string `json:"user_agent"`
-	BrandList       string `json:"ua_brand_list"`
-	Platform        string `json:"ua_platform"`
+	UA              string `json:"user_agent,omitempty"`
+	BrandList       string `json:"ua_brand_list,omitempty"`
+	Platform        string `json:"ua_platform,omitempty"`
 	IsMobile        bool   `json:"ua_is_mobile"`
-	Model           string `json:"ua_model"`
-	Architecture    string `json:"ua_architecture"`
-	Bitness         string `json:"ua_bitness"`
-	FullVersionList string `json:"ua_full_versions"`
-	FormFactors     string `json:"ua_form_factors"`
-	DeviceMemoryGB  string `json:"device_memory_gb"`
-	ViewportWidth   int    `json:"viewport_width_px"`
+	Model           string `json:"ua_model,omitempty"`
+	Architecture    string `json:"ua_architecture,omitempty"`
+	Bitness         string `json:"ua_bitness,omitempty"`
+	FullVersionList string `json:"ua_full_versions,omitempty"`
+	FormFactors     string `json:"ua_form_factors,omitempty"`
+	DeviceMemoryGB  string `json:"device_memory_gb,omitempty"`
+	ViewportWidth   int    `json:"viewport_width_px,omitempty"`
 
-	AcceptLanguage string `json:"accept_language"`
-	TimezoneOffset int    `json:"timezone_offset"`
+	AcceptLanguage string `json:"accept_language,omitempty"`
+	TimezoneOffset int    `json:"timezone_offset,omitempty"`
 
-	CountryCode   string  `json:"country_code"`
-	ContinentCode string  `json:"continent_code"`
-	City          string  `json:"city"`
-	Region        string  `json:"region"`
-	PostalCode    string  `json:"postal_code"`
-	Latitude      float64 `json:"latitude"`
-	Longitude     float64 `json:"longitude"`
-	CloudTimezone string  `json:"cloud_timezone"`
+	CountryCode   string  `json:"country_code,omitempty"`
+	ContinentCode string  `json:"continent_code,omitempty"`
+	City          string  `json:"city,omitempty"`
+	Region        string  `json:"region,omitempty"`
+	PostalCode    string  `json:"postal_code,omitempty"`
+	Latitude      float64 `json:"latitude,omitempty"`
+	Longitude     float64 `json:"longitude,omitempty"`
+	CloudTimezone string  `json:"cloud_timezone,omitempty"`
 
 	SaveData          bool    `json:"save_data"`
-	EffectiveConnType string  `json:"effective_conn_type"`
-	RoundTripTimeMs   int     `json:"rtt_ms"`
-	DownlinkMbps      float64 `json:"downlink_mbps"`
+	EffectiveConnType string  `json:"effective_conn_type,omitempty"`
+	RoundTripTimeMs   int     `json:"rtt_ms,omitempty"`
+	DownlinkMbps      float64 `json:"downlink_mbps,omitempty"`
 
 	GlobalPrivacyControl bool `json:"global_privacy_control"`
 	DoNotTrack           bool `json:"do_not_track"`

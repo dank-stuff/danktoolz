@@ -7,6 +7,7 @@ import (
 
 	"codeberg.org/dankstuff/danktoolz/actions"
 	"codeberg.org/dankstuff/danktoolz/config"
+	"codeberg.org/dankstuff/danktoolz/handlers/curls"
 	"codeberg.org/dankstuff/danktoolz/handlers/middlewares/contenttype"
 	"codeberg.org/dankstuff/danktoolz/handlers/middlewares/ismobile"
 	"codeberg.org/dankstuff/danktoolz/handlers/middlewares/pathname"
@@ -54,6 +55,15 @@ func main() {
 	pagesHandler.HandleFunc("/privacy", pages.HandlePrivacy)
 
 	///
+	/// CURL "PAGES"
+	///
+
+	curlPages := curls.New(usecases)
+
+	curlsHandler := http.NewServeMux()
+	curlsHandler.HandleFunc("/", curlPages.HandleMyIP)
+
+	///
 	/// WEB APIS
 	///
 
@@ -73,7 +83,8 @@ func main() {
 
 	applicationHandler := http.NewServeMux()
 
-	applicationHandler.Handle("/", pathname.Handler(ismobile.Handler(contenttype.Html(pagesHandler))))
+	applicationHandler.Handle("/", minifyer.Middleware(pathname.Handler(ismobile.Handler(contenttype.Html(pagesHandler)))))
+	applicationHandler.Handle("/curl", curlsHandler)
 	// applicationHandler.Handle("/api/", contenttype.Json(http.StripPrefix("/api", v1ApiHandler)))
 	// applicationHandler.Handle("/api/web/", ismobile.Handler(http.StripPrefix("/api/web", webApisHandler)))
 
@@ -85,7 +96,7 @@ func main() {
 	applicationHandler.HandleFunc("/robots.txt", statics.HandleRobots)
 	applicationHandler.HandleFunc("/sitemap.xml", statics.HandleSitemap)
 	applicationHandler.HandleFunc("/favicon.ico", statics.HandleFavicon)
-	applicationHandler.Handle("/static/", (statics.AssetsHandler()))
+	applicationHandler.Handle("/static/", statics.AssetsHandler())
 
 	log.Printf("Starting web server at port %s", config.Env().Port)
 	log.Fatalln(http.ListenAndServe(":"+config.Env().Port, applicationHandler))
